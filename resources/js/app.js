@@ -7,8 +7,14 @@
 require("./bootstrap");
 window.Vue = require("vue");
 
+import { Form, HasError, AlertError } from "vform";
 import { routes } from "./routes";
 import VueRouter from "vue-router";
+
+window.Form = Form;
+Vue.component(HasError.name, HasError);
+Vue.component(AlertError.name, AlertError);
+Vue.component("add-new-user", require("./components/Users/AddNew.vue").default);
 
 Vue.use(VueRouter);
 
