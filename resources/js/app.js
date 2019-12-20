@@ -6,21 +6,18 @@
 
 require("./bootstrap");
 
-const Dashboard = require("./components/Dashboard.vue").default;
-const Profile = require("./components/Profile.vue").default;
+import { routes } from "./routes";
+
+// const Dashboard = require("./components/Dashboard.vue").default;
+// const Profile = require("./components/Profile.vue").default;
 
 window.Vue = require("vue");
 
 import VueRouter from "vue-router";
 Vue.use(VueRouter);
 
-let routes = [
-    { path: "/dashboard", component: Dashboard },
-    { path: "/profile", component: Profile }
-];
-
 const router = new VueRouter({
-    mode: 'history',
+    mode: "history",
     routes
 });
 
