@@ -5,15 +5,11 @@
  */
 
 require("./bootstrap");
-
-import { routes } from "./routes";
-
-// const Dashboard = require("./components/Dashboard.vue").default;
-// const Profile = require("./components/Profile.vue").default;
-
 window.Vue = require("vue");
 
+import { routes } from "./routes";
 import VueRouter from "vue-router";
+
 Vue.use(VueRouter);
 
 const router = new VueRouter({
