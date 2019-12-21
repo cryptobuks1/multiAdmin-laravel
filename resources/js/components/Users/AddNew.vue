@@ -23,8 +23,8 @@
                             <span aria-hidden="true">&times;</span>
                         </button>
                     </div>
-                    <div class="modal-body">
-                        <form>
+                    <form @submit.prevent="createUser">
+                        <div class="modal-body">
                             <div class="form-group">
                                 <input
                                     v-model="form.name"
@@ -80,7 +80,9 @@
                                         'is-invalid': form.errors.has('type')
                                     }"
                                 >
-                                    <option value="">Select User Role</option>
+                                    <option value="" disabled
+                                        >Select User Role</option
+                                    >
                                     <option value="admin">Admin</option>
                                     <option value="user">User</option>
                                     <option value="author">Author</option>
@@ -91,31 +93,31 @@
                                 ></has-error>
                             </div>
                             <div class="form-group">
-                                <textarea :model="form.bio"
-                                        class="form-control"
-                                        :class="{ 'is-invalid': form.errors.has('bio')}"
-                                        placeholder="User Bio"
+                                <textarea
+                                    :model="form.bio"
+                                    class="form-control"
+                                    :class="{
+                                        'is-invalid': form.errors.has('bio')
+                                    }"
+                                    placeholder="User Bio"
                                 ></textarea>
-                                <has-error
-                                    :form="form"
-                                    field="bio"
-                                ></has-error>
+                                <has-error :form="form" field="bio"></has-error>
                             </div>
-                        </form>
-                        <!-- ./form -->
-                    </div>
-                    <div class="modal-footer">
-                        <button
-                            type="button"
-                            class="btn btn-secondary"
-                            data-dismiss="modal"
-                        >
-                            Close
-                        </button>
-                        <button type="button" class="btn btn-primary">
-                            Create
-                        </button>
-                    </div>
+                        </div>
+                        <div class="modal-footer">
+                            <button
+                                type="button"
+                                class="btn btn-secondary"
+                                data-dismiss="modal"
+                            >
+                                Close
+                            </button>
+                            <button type="submit" class="btn btn-primary">
+                                Create
+                            </button>
+                        </div>
+                    </form>
+                    <!-- ./form -->
                 </div>
             </div>
         </div>
@@ -135,6 +137,11 @@ export default {
                 photo: ""
             })
         };
+    },
+    methods: {
+        createUser() {
+            this.form.post('api/user')
+        }
     },
     mounted() {
         console.log("Modal Mounted");
